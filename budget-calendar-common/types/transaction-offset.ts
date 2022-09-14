@@ -12,7 +12,6 @@ export interface OffsetTransaction extends Transaction {
     receipt?: ReceiptID;
 
     offset: Offset;
-    towardsPrincipal: boolean;
 }
 
 export type Offset =
@@ -22,11 +21,13 @@ export type Offset =
 export interface Offset_Basic {
     type: 'basic';
     offsetNet: DollarAmount;
+    offsetEscrow: DollarAmount;
     transaction?: RecurringTransactionID;
 }
 export interface Offset_Adjustment {
     type: 'adjustment';
     adjustedNet: DollarAmount;
+    adjustedEscrow: DollarAmount;
     transaction: RecurringTransactionID;
 }
 
@@ -34,6 +35,7 @@ export const Offset_Basic: LiteCodec<Offset_Basic> = pipe(
     C.struct({
         type: C.literal('basic'),
         offsetNet: DollarAmount,
+        offsetEscrow: DollarAmount,
     }),
     C.intersect(
         C.partial({
@@ -44,6 +46,7 @@ export const Offset_Basic: LiteCodec<Offset_Basic> = pipe(
 export const Offset_Adjustment: LiteCodec<Offset_Adjustment> = C.struct({
     type: C.literal('adjustment'),
     adjustedNet: DollarAmount,
+    adjustedEscrow: DollarAmount,
     transaction: RecurringTransactionID,
 });
 
@@ -62,7 +65,6 @@ export const OffsetTransaction: LiteCodec<OffsetTransaction> = pipe(
             id: OffsetTransactionID,
             subscription: SubscriptionID,
             offset: Offset,
-            towardsPrincipal: C.boolean,
         }),
     ),
     C.intersect(

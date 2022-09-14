@@ -1,7 +1,7 @@
 import * as C from 'io-ts/Codec';
 import { pipe } from 'fp-ts/function';
 
-import { DateFromTimestamp, DayOfMonth, Month, Weekday } from "./common";
+import { DateFromTimestamp, DayOfMonth, DollarAmount, Month, Weekday } from "./common";
 import { SubscriptionPatternID } from "./ids";
 import { LiteCodec } from './_lib';
 
@@ -46,11 +46,13 @@ interface SubscriptionPattern_Base {
 
     // TODO: replace with timezone-less date
     start: Date;
+    escrow: DollarAmount;
 }
 
 const SubscriptionPattern_Base = C.struct({
     id: SubscriptionPatternID,
     start: DateFromTimestamp,
+    escrow: DollarAmount,
 });
 
 export const SubscriptionPattern_Yearly: LiteCodec<SubscriptionPattern_Yearly> = pipe(
