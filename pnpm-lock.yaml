@@ -1,0 +1,25 @@
+lockfileVersion: 5.4
+
+importers:
+
+  budget-calendar-common:
+    specifiers:
+      fp-ts: ^2.12.3
+      io-ts: ^2.2.18
+    dependencies:
+      fp-ts: 2.12.3
+      io-ts: 2.2.18_fp-ts@2.12.3
+
+packages:
+
+  /fp-ts/2.12.3:
+    resolution: {integrity: sha512-8m0XvW8kZbfnJOA4NvSVXu95mLbPf4LQGwQyqVukIYS4KzSNJiyKSmuZUmbVHteUi6MGkAJGPb0goPZqI+Tsqg==}
+    dev: false
+
+  /io-ts/2.2.18_fp-ts@2.12.3:
+    resolution: {integrity: sha512-3JxUUzRtPQPs5sOwB7pW0+Xb54nOzqA6M1sRB1hwgsRmkWMeGTjtOrCynGTJhIj+mBLUj2S37DAq2+BrPh9kTQ==}
+    peerDependencies:
+      fp-ts: ^2.5.0
+    dependencies:
+      fp-ts: 2.12.3
+    dev: false

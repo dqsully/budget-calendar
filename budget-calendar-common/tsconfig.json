@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "lib": [
+            "ES2019",
+        ],
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "strict": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noUncheckedIndexedAccess": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "useUnknownInCatchVariables": true,
+    },
+    "include": [
+        "**/*",
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts",
+    ],
+}
