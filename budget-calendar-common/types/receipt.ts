@@ -60,9 +60,9 @@ export interface ReceiptMatchCriteria {
     weight: number;
 }
 
-interface ReceiptAnchor_Base {
-    id: ReceiptAnchorID;
-}
+export type ReceiptAnchor =
+    | ReceiptAnchor_Image
+    | ReceiptAnchor_Text;
 
 export interface ReceiptAnchor_Image extends ReceiptAnchor_Base {
     type: 'image';
@@ -78,15 +78,28 @@ export interface ReceiptAnchor_Text extends ReceiptAnchor_Base {
     // TODO: other settings?
 }
 
-export type ReceiptAnchor =
-    | ReceiptAnchor_Image
-    | ReceiptAnchor_Text;
+interface ReceiptAnchor_Base {
+    id: ReceiptAnchorID;
+}
 
 export interface ReceiptSection {
     id: ReceiptSectionID;
 
     // TODO: fill this out with boundaries, parsers, etc.
 }
+
+export type ReceiptTag =
+    | ReceiptTag_Total
+    | ReceiptTag_Subtotal
+    | ReceiptTag_TaxName
+    | ReceiptTag_TaxAmount
+    | ReceiptTag_DiscountName
+    | ReceiptTag_DiscountAmount
+    | ReceiptTag_ItemName
+    | ReceiptTag_ItemAmount
+    | ReceiptTag_ItemFlags
+    | ReceiptTag_ItemDiscountName
+    | ReceiptTag_ItemDiscountAmount;
 
 export interface ReceiptTag_Total {
     type: 'total';
@@ -132,19 +145,6 @@ export interface ReceiptTag_ItemDiscountAmount {
     itemSection: ReceiptSectionID;
     discountSection: ReceiptSectionID;
 }
-
-export type ReceiptTag =
-    | ReceiptTag_Total
-    | ReceiptTag_Subtotal
-    | ReceiptTag_TaxName
-    | ReceiptTag_TaxAmount
-    | ReceiptTag_DiscountName
-    | ReceiptTag_DiscountAmount
-    | ReceiptTag_ItemName
-    | ReceiptTag_ItemAmount
-    | ReceiptTag_ItemFlags
-    | ReceiptTag_ItemDiscountName
-    | ReceiptTag_ItemDiscountAmount;
 
 export const ReceiptTag_Total: LiteCodec<ReceiptTag_Total> = C.struct({
     type: C.literal('total'),
